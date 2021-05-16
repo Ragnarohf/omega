@@ -2,7 +2,11 @@
 
 {% block title %}Register
 {% endblock %}
-
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+	<script src="{{asset('assets/js/togglePassword.js')}}"></script>
+{% endblock %}
 {% block body %}
 	{% if passError is defined %}
 		<div class="alert alert-danger" role="alert">{{ passError }}</div>
@@ -10,19 +14,28 @@
 	{% for flashError in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
+	<div class="container">
+		<h1>Register</h1>
 
-	<h1>Register</h1>
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.email) }}
 
-	{{ form_start(registrationForm) }}
-	{{ form_row(registrationForm.email) }}
-	{{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-	{{ form_row(registrationForm.confirmPassword, {
-            label: 'Confirm Password'
-        }) }}
-	{{ form_row(registrationForm.agreeTerms) }}
+		<div class="form-group">
+			<div class="col-md-6">
+				{{form_row(registrationForm.plainPassword, {'id':'password-field','attr':{'placeholder':'votre password','class':'form-control'}})}}
+				<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-6">
+				{{form_row(registrationForm.confirmPassword, {'id':'confirmPassword-field','attr':{'placeholder':'votre password','class':'form-control'}})}}
+				<span toggle="#confirmPassword-field" class="fa fa-fw fa-eye field-icon toggle-confirmPassword"></span>
+			</div>
+		</div>
+		{{ form_row(registrationForm.agreeTerms) }}
 
-	<button type="submit" class="btn">Register</button>
-	{{ form_end(registrationForm) }}
+		<button type="submit" class="btn">Register</button>
+		{{ form_end(registrationForm) }}
+
+	</div>
 {% endblock %}
