@@ -25,7 +25,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // attribuer un ROLE_USER auto
-            $user->setRoles(['ROLES_USER']);
+            $user->setRoles(['ROLE_USER']);
             //comparaison des passwords
             if ($form->get('plainPassword')->getData() === $form->get('confirmPassword')->getData()) {
                 $user->setPassword(
@@ -47,7 +47,7 @@ class RegistrationController extends AbstractController
             } else {
                 return $this->render('registration/register.html.twig', [
                     'registrationForm' => $form->createView(),
-                    'passError' => 'les mots de passes ne sont pas identiques'
+                    'passError' => "Passwords don't appear to match. "
                 ]);
             }
         }
