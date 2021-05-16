@@ -6,7 +6,7 @@
   z-index: 2;
 }
 
-@font-face {
+/* @font-face {
   font-family: "roboto";
   src: url("../fonts/Roboto-Regular.ttf");
 }
@@ -76,4 +76,4 @@ select:hover {
   color: var(--primaryFocus);
   font-weight: 600;
   font-size: var(--txtCorp);
-}
+} */

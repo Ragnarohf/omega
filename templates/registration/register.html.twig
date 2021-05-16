@@ -14,41 +14,18 @@
 	{% for flashError in app.flashes('verify_email_error') %}
 		<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
-	<div id="form">
-		<h1>Register</h1>
-		<div class="formulaire">{{ form_start(registrationForm) }}
 
-			{{ form_start(registrationForm) }}
-			<div class="form-group">
-				<label for="coverImg">Nom</label>
-				<input type="text" name="Nom" placeholder="Nom" id="Nom" class='form-control'>
-				<label for="coverImg">Prenom</label>
-				<input type="text" name="Prenom" placeholder="Prenom" id="Prenom" class='form-control'>
-			</div>
-			<div class="form-group">
-				{{ form_row(registrationForm.email,{'attr':{'placeholder':'Enter email','class':'form-control'}})}}
-				<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-			</div>
-			<div class="form-group">
-				{{form_row(registrationForm.plainPassword, {'id':'password-field','attr':{'placeholder':'Your Password','class':'form-control'}})}}
-				<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-			</div>
-			<div class="form-group">
-				{{form_row(registrationForm.confirmPassword, {'id':'confirmPassword-field','attr':{'placeholder':'Confirm Your Password','class':'form-control'}})}}
-				<span toggle="#confirmPassword-field" class="fa fa-fw fa-eye field-icon toggle-confirmPassword"></span>
-			</div>
-			<div class="form-group">
-				<label for="coverImg">Avatar</label>
-				<input type="file" name="coverImg" id="coverImg" class='form-control'>
-			</div>
-			<div class="form-group">
-				{{ form_row(registrationForm.agreeTerms) }}
-			</div>
+	<h1>Register</h1>
+	<div class="formulaire">{{ form_start(registrationForm) }}
 
-
-			<button type="submit" class="btn">Register</button>
-			{{ form_end(registrationForm) }}
-		</div>
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.email,{'attr':{'placeholder':'Enter email','class':'form-control'}})}}
+		{{form_row(registrationForm.plainPassword, {'id':'password-field','attr':{'placeholder':'Your Password','class':'form-control'}})}}
+		<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+		{{form_row(registrationForm.confirmPassword, {'id':'confirmPassword-field','attr':{'placeholder':'Confirm Your Password','class':'form-control'}})}}
+		<span toggle="#confirmPassword-field" class="fa fa-fw fa-eye field-icon toggle-confirmPassword"></span>
+		{{ form_row(registrationForm.agreeTerms) }}
+		<button type="submit" class="btn">Register</button>
+		{{ form_end(registrationForm) }}
 	</div>
-
-{% endblock %}
+</div>{% endblock %}
