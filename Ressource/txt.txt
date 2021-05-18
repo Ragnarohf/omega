@@ -1,0 +1,27 @@
+entity code 
+diagram workbench
+
+entity friend
+one to many en partant de USER
+
+page wall
+je vois tout les users 
+
+definir les relations entre les differentes entity 
+
+
+requetye friend 
+one to many  user => code 
+comment => code many to one 
+
+transformer le code pour non l'executer
+https://www.php.net/manual/fr/function.htmlentities.php
+
+avant de faire mon flush 
+
+plugin code pen a testez
+
+recuperer la valeur 
+=> is submittes => html entities 
+
+
