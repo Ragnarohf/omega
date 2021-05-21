@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Code;
+use App\Entity\User;
 use App\Form\CodeType;
 use App\Repository\CodeRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/code")
@@ -28,13 +30,19 @@ class CodeController extends AbstractController
     /**
      * @Route("/new", name="code_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserInterface $user): Response
     {
         $code = new Code();
+        $user = new User;
         $form = $this->createForm(CodeType::class, $code);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $code->setCreatedAt(new \DateTime("now"));
+            $codeAuthor = $this->getUser()->getFirstName();
+            $code->setAuthor($codeAuthor);
+            // $codeId = $this->getUser()->getId();
+            // $code->setUser($codeId);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($code);
             $entityManager->flush();
@@ -83,7 +91,7 @@ class CodeController extends AbstractController
      */
     public function delete(Request $request, Code $code): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$code->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $code->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($code);
             $entityManager->flush();
