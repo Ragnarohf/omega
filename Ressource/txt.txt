@@ -28,3 +28,5 @@ recuperer la valeur
 mettre des index.php avec header location dans tout les dossiers de l'assets
 redirect vers une page 404
 https://symfony.com/doc/current/controller/error_pages.html
+
+finir la page code
