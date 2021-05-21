@@ -46,6 +46,7 @@ class RegistrationController extends AbstractController
             }
             // attribuer un ROLE_USER auto
             $user->setRoles(['ROLE_USER']);
+            $user->setCreatedAt(new \DateTime("now"));
             //comparaison des passwords
             if ($form->get('plainPassword')->getData() === $form->get('confirmPassword')->getData()) {
                 $user->setPassword(
