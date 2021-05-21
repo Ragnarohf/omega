@@ -21,11 +21,17 @@
 				<h1 class="x-large">FaceCode, Social's Network Revolution</h1>
 				<p class="lead">
 					Create developer profile/portfolio, share posts and get help from
-																																								            other developers
+																																													            other developers
 				</p>
 				<div class="buttons">
-					<a href="{{path('app_register')}}" class="btn btn-primary">Sign Up</a>
-					<a href="{{path('app_login')}}" class="btn btn">Login</a>
+					{% if app.user %}
+
+						{% else %}
+							<a href="{{path('app_register')}}" class="btn btn-primary">Sign Up</a>
+							<a href="{{path('app_login')}}" class="btn btn">Login</a>
+
+					{% endif %}
+
 				</div>
 			</div>
 		</div>
