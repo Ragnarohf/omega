@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class RegistrationFormType extends AbstractType
@@ -19,6 +20,12 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('email')
+            ->add('Listfriend', HiddenType::class, [
+                'mapped' => false
+            ])
+            ->add('is_friend', HiddenType::class, [
+                'mapped' => false
+            ])
             ->add('FirstName')
             ->add('LastName')
             ->add('avatar', FileType::class, [

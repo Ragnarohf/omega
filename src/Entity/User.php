@@ -63,6 +63,16 @@ class User implements UserInterface
      */
     private $codes;
 
+    /**
+     * @ORM\OneToOne(targetEntity=ListFriend::class, mappedBy="User", cascade={"persist", "remove"})
+     */
+    private $listFriend;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=ListFriend::class, inversedBy="Friend")
+     */
+    private $is_friend;
+
     public function __construct()
     {
         $this->codes = new ArrayCollection();
@@ -223,6 +233,40 @@ class User implements UserInterface
                 $code->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getListFriend(): ?ListFriend
+    {
+        return $this->listFriend;
+    }
+
+    public function setListFriend(?ListFriend $listFriend): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($listFriend === null && $this->listFriend !== null) {
+            $this->listFriend->setUser(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($listFriend !== null && $listFriend->getUser() !== $this) {
+            $listFriend->setUser($this);
+        }
+
+        $this->listFriend = $listFriend;
+
+        return $this;
+    }
+
+    public function getIsFriend(): ?ListFriend
+    {
+        return $this->is_friend;
+    }
+
+    public function setIsFriend(?ListFriend $is_friend): self
+    {
+        $this->is_friend = $is_friend;
 
         return $this;
     }

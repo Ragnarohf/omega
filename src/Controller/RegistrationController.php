@@ -29,6 +29,7 @@ class RegistrationController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+
             // test du fichier uploadé
             if (!empty($_FILES['registration_form']) && isset($_FILES['registration_form'])) {
 
@@ -47,6 +48,8 @@ class RegistrationController extends AbstractController
             // attribuer un ROLE_USER auto
             $user->setRoles(['ROLE_USER']);
             $user->setCreatedAt(new \DateTime("now"));
+            //liste d'amis
+            $user->setListFriend(NULL);
             //comparaison des passwords
             if ($form->get('plainPassword')->getData() === $form->get('confirmPassword')->getData()) {
                 $user->setPassword(

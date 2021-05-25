@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ListFriend index{% endblock %}
+
+{% block body %}
+    <h1>ListFriend index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for list_friend in list_friends %}
+            <tr>
+                <td>{{ list_friend.id }}</td>
+                <td>
+                    <a href="{{ path('list_friend_show', {'id': list_friend.id}) }}">show</a>
+                    <a href="{{ path('list_friend_edit', {'id': list_friend.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('list_friend_new') }}">Create new</a>
+{% endblock %}

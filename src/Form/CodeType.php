@@ -16,7 +16,9 @@ class CodeType extends AbstractType
         $builder
             ->add('Title')
             ->add('content', CKEditorType::class)
-            ->add('author')
+            ->add('author', HiddenType::class, [
+                'mapped' => false,
+            ])
             ->add('createdAt', HiddenType::class, [
                 'mapped' => false,
             ]);

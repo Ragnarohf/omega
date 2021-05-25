@@ -41,8 +41,9 @@ class CodeController extends AbstractController
             $code->setCreatedAt(new \DateTime("now"));
             $codeAuthor = $this->getUser()->getFirstName();
             $code->setAuthor($codeAuthor);
-            // $codeId = $this->getUser()->getId();
-            // $code->setUser($codeId);
+            $user = $this->getUser();
+            $code->setUser($user);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($code);
             $entityManager->flush();

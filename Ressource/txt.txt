@@ -16,7 +16,8 @@ comment => code many to one
 
 transformer le code pour non l'executer
 https://www.php.net/manual/fr/function.htmlentities.php
-
+ENT_HTML5
+echo htmlentities($str, ENT_QUOTES)
 avant de faire mon flush 
 
 plugin code pen a testez
@@ -30,3 +31,15 @@ redirect vers une page 404
 https://symfony.com/doc/current/controller/error_pages.html
 
 finir la page code
+*
+Email : facecode.social@gmail.com
+
+Mdp : FaceMaToAn
+
+Date de naissance : 23 Mai 1990
+
+Mdp github : FaceMaToAn76
+[22:15]
+De tout les sites
+
+nom du code et html entityies
