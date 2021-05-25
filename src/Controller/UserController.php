@@ -55,9 +55,10 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if (!empty($_FILES['registration_form']) && isset($_FILES['registration_form'])) {
 
-                $files = $_FILES['registration_form'];
+            if (!empty($_FILES['user']) && isset($_FILES['user'])) {
+
+                $files = $_FILES['user'];
 
                 // test des différents types d'erreur (type,size,error) qui peuvent êtres fait séparement
                 if ($files['type']['avatar'] === 'image/jpeg' || $files['type']['avatar'] === 'image/jpg' || $files['type']['avatar'] === 'image/gif' || $files['type']['avatar'] === 'image/png' || $files['type']['avatar'] === 'image/webp') {
@@ -70,6 +71,7 @@ class UserController extends AbstractController
                 }
             }
             if ($imgOK) {
+                // dd('hello');
                 $idUser = $user->getId();
                 //ImageResize
                 $avatar = new ImageResize($tmpImg);
@@ -79,7 +81,7 @@ class UserController extends AbstractController
                 $avatarth->resizeToWidth(80);
                 $avatarth->save($public . "assets/images/users/thumbnail/" . $idUser . ".webp", IMAGETYPE_WEBP);
                 // unlink je supprime l'image d'origine
-                unlink($tmpImg);
+                // unlink($tmpImg);
                 // update
                 $user->setAvatar($idUser . ".webp");
             }

@@ -22,6 +22,9 @@ class CodeController extends AbstractController
      */
     public function index(CodeRepository $codeRepository): Response
     {
+
+
+
         return $this->render('code/index.html.twig', [
             'codes' => $codeRepository->findAll(),
         ]);
@@ -39,7 +42,7 @@ class CodeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $code->setCreatedAt(new \DateTime("now"));
-            $codeAuthor = $this->getUser()->getFirstName();
+            $codeAuthor = $this->getUser()->getFirstName() . " " . $this->getUser()->getLastName();
             $code->setAuthor($codeAuthor);
             $user = $this->getUser();
             $code->setUser($user);
@@ -62,6 +65,7 @@ class CodeController extends AbstractController
      */
     public function show(Code $code): Response
     {
+
         return $this->render('code/show.html.twig', [
             'code' => $code,
         ]);

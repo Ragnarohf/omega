@@ -6,7 +6,7 @@
 {% block body %}
 	<h1>Profil de
 		{{app.user.LastName}}</h1>
-	<img src="{{asset('assets/images/users/')}}{{app.user.avatar}}" alt="">
+	<img src="{{asset('assets/images/users/')}}{{app.user.avatar}}?version={{ date().timestamp }}" alt="">
 
 
 	{{ include('user/_form.html.twig', {'button_label': 'Update'}) }}

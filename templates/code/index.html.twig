@@ -1,41 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Code index{% endblock %}
+{% block title %}Mur
+{% endblock %}
 
 {% block body %}
-    <h1>Code index</h1>
+	<h1>Mur</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Author</th>
-                <th>CreatedAt</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for code in codes %}
-            <tr>
-                <td>{{ code.id }}</td>
-                <td>{{ code.Title }}</td>
-                <td>{{ code.content }}</td>
-                <td>{{ code.author }}</td>
-                <td>{{ code.createdAt ? code.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('code_show', {'id': code.id}) }}">show</a>
-                    <a href="{{ path('code_edit', {'id': code.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('code_new') }}">Create new</a>
-{% endblock %}
+	{% for code in codes %}*
+		<div class="container">
+			<div class="card text-center">
+				<div class="card-header">
+					{{ code.author }}
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">{{ code.Title }}</h5>
+					<p class="card-text">{{ code.content|raw }}</p>
+					<a href="{{ path('code_show', {'id': code.id}) }}" class="btn btn-primary">show</a>
+				</div>
+				<div class="card-footer text-muted">
+					{{ code.createdAt ? code.createdAt|date('Y-m-d H:i:s') : '' }}
+				</div>
+			</div>
+		</div>
+
+
+	{% else %}
+		<tr>
+			<td colspan="6">no records found</td>
+		</tr>
+	{% endfor %}
+</tbody></table><a href="{{ path('code_new') }}">Create new</a>{% endblock %}
