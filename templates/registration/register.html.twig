@@ -28,10 +28,10 @@
 		<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
 		{{form_row(registrationForm.confirmPassword, {'id':'confirmPassword-field','attr':{'placeholder':'Confirm Your Password','class':'form-control'}})}}
 		<span toggle="#confirmPassword-field" class="fa fa-fw fa-eye field-icon toggle-confirmPassword"></span>
-		{{ form_row(registrationForm.avatar) }}
+		{{ form_row(registrationForm.avatar,{'attr':{'class':'mt-3 mb-3'}}) }}
 		<div class="fileInfo"></div>
 		{{ form_row(registrationForm.agreeTerms) }}
-		<button type="submit" class="btn btn-success">Register</button>
+		<button type="submit" class="btn btn-success mt-3 mb-3">Register</button>
 
 		{{ form_end(registrationForm) }}</div>
 
