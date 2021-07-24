@@ -121,3 +121,14 @@
   top: -60px;
   right: -60px;
 }
+.field-icon {
+  float: right;
+  margin-left: -20px;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+.btn {
+  padding: 10px;
+  text-align: center;
+}
