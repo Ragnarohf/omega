@@ -88,7 +88,7 @@ class UserController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_index');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render('user/edit.html.twig', [

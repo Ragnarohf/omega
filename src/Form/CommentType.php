@@ -19,20 +19,20 @@ class CommentType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'votre email',
+                'label' => 'Your mail',
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
             ->add('Nickname', TextType::class, [
-                'label' => 'votre pseudo',
+                'label' => 'Nickname',
                 'attr' => [
                     'class' => 'form-control'
                 ]
             ])
 
             ->add('content', CKEditorType::class, [
-                'label' => 'votre commentaire',
+                'label' => 'Comment',
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -40,7 +40,7 @@ class CommentType extends AbstractType
             ->add("parentid", HiddenType::class, [
                 'mapped' => false
             ])
-            ->add('envoyer', SubmitType::class);
+            ->add('Submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
