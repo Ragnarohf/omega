@@ -49,9 +49,15 @@ class Code
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Comments::class, mappedBy="codes", orphanRemoval=true)
+     */
+    private $commentss;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->commentss = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +149,36 @@ class Code
             // set the owning side to null (unless already changed)
             if ($comment->getCodes() === $this) {
                 $comment->setCodes(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comments[]
+     */
+    public function getCommentss(): Collection
+    {
+        return $this->commentss;
+    }
+
+    public function addCommentss(Comments $commentss): self
+    {
+        if (!$this->commentss->contains($commentss)) {
+            $this->commentss[] = $commentss;
+            $commentss->setCodes($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommentss(Comments $commentss): self
+    {
+        if ($this->commentss->removeElement($commentss)) {
+            // set the owning side to null (unless already changed)
+            if ($commentss->getCodes() === $this) {
+                $commentss->setCodes(null);
             }
         }
 

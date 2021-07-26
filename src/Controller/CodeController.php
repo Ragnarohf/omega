@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Code;
+use App\Entity\Comments;
 use App\Entity\User;
 use App\Form\CodeType;
+use App\Form\CommentType;
 use App\Repository\CodeRepository;
+use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +25,6 @@ class CodeController extends AbstractController
      */
     public function index(CodeRepository $codeRepository): Response
     {
-
-
-
         return $this->render('code/index.html.twig', [
             'codes' => $codeRepository->findAll(),
         ]);
@@ -63,11 +63,26 @@ class CodeController extends AbstractController
     /**
      * @Route("/{id}", name="code_show", methods={"GET"})
      */
-    public function show(Code $code): Response
+    public function show(Code $code, Request $request): Response
     {
 
+        $comment = new Comments;
+
+        $commentForm = $this->createForm(CommentType::class, $comment);
+        $commentForm->handleRequest($request);
+
+        if ($commentForm->isSubmitted() && $commentForm->isValid()) {
+
+            $comment->setCreatedAt(new DateTime());
+            $comment->setCodes($code);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($comment);
+            $em->flush();
+        }
         return $this->render('code/show.html.twig', [
             'code' => $code,
+            'commentForm' => $commentForm->createView(),
         ]);
     }
 

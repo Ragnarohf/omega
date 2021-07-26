@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-
-	<h1>{{ code.Title }}</h1>
-
+	<div class="container">
+		<h1>{{ code.Title }}</h1>
+	</div>
 	<div class="container">
 		<div class="card text-center">
 			<div class="card-header">
@@ -22,13 +22,19 @@
 			</div>
 		</div>
 	</div>
+	<div class="container">
+		<h2>Liste des commentaire</h2>
+	</div>
+	<div class="container">
+		<h2>Ajouter un commentaire</h2>
+		{{form(commentForm)}}
+		</div>
+		<a href="{{ path('code_index') }}">back to list</a>
 
-	<a href="{{ path('code_index') }}">back to list</a>
+		<a href="{{ path('code_edit', {'id': code.id}) }}">edit</a>
+		{% if is_granted('ROLE_ADMIN')%}
 
-	<a href="{{ path('code_edit', {'id': code.id}) }}">edit</a>
-	{% if is_granted('ROLE_ADMIN')%}
+			{{ include('code/_delete_form.html.twig') }}
+		{% endif %}
 
-		{{ include('code/_delete_form.html.twig') }}
-	{% endif %}
-
-{% endblock %}
+	{% endblock %}

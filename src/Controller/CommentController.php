@@ -2,23 +2,23 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
+use App\Entity\Comments;
 use App\Form\CommentType;
-use App\Repository\CommentRepository;
+use App\Repository\CommentsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/comment")
+ * @Route("/comments")
  */
 class CommentController extends AbstractController
 {
     /**
      * @Route("/", name="comment_index", methods={"GET"})
      */
-    public function index(CommentRepository $commentRepository): Response
+    public function index(CommentsRepository $commentRepository): Response
     {
         return $this->render('comment/index.html.twig', [
             'comments' => $commentRepository->findAll(),
@@ -30,7 +30,7 @@ class CommentController extends AbstractController
      */
     public function new(Request $request): Response
     {
-        $comment = new Comment();
+        $comment = new Comments();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
 
@@ -51,8 +51,9 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}", name="comment_show", methods={"GET"})
      */
-    public function show(Comment $comment): Response
+    public function show(Comments $comment): Response
     {
+
         return $this->render('comment/show.html.twig', [
             'comment' => $comment,
         ]);
@@ -61,7 +62,7 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}/edit", name="comment_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Comment $comment): Response
+    public function edit(Request $request, Comments $comment): Response
     {
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
@@ -81,7 +82,7 @@ class CommentController extends AbstractController
     /**
      * @Route("/{id}", name="comment_delete", methods={"POST"})
      */
-    public function delete(Request $request, Comment $comment): Response
+    public function delete(Request $request, Comments $comment): Response
     {
         if ($this->isCsrfTokenValid('delete' . $comment->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
