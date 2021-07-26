@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mur
+{% block title %}Wall
 {% endblock %}
 {% block stylesheets %}
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -30,6 +30,7 @@
 					</div>
 				</div>
 			</div>
+			<br>
 
 
 		{% else %}
@@ -37,7 +38,12 @@
 				<td colspan="6">no records found</td>
 			</tr>
 		{% endfor %}
+		<div class="container">
+			<button class="btn btn-success mt-3 mb-3">
+				<a href="{{ path('code_new') }}">Create new</a>
+			</button>
+		</div>
 
-		<a href="{{ path('code_new') }}">Create new</a>
+
 	</section>
 {% endblock %}
